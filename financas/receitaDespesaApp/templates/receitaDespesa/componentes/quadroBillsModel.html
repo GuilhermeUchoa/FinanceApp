@@ -1,0 +1,17 @@
+{% load humanize %}
+
+
+{% for item in PadraoDeConta %}
+
+  <button class="btn btn-outline btn-sm"
+  hx-post="{% url 'receitaDespesaApp:addContaPadrao' %}"
+  hx-swap="outerHTML"
+  hx-target="#body"
+  name="conta"
+  value="{{item.contaPadrao}}"
+  >+ {{item.contaPadrao}}</button>
+
+  
+
+{% endfor %}
+    

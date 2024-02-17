@@ -1,0 +1,20 @@
+.base_container{
+    display: grid;
+    grid-template-rows: 90vh;
+    grid-template-columns: 98vw;
+    justify-items: center;
+    align-items: center;
+}
+
+
+.base_content{
+
+    
+    
+}
+
+
+.base_footer{
+
+    width: 100vw;
+}

@@ -1,0 +1,35 @@
+{% load static %}   
+{% load livereload_tags %}
+{% livereload_script %}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.8"></script>
+    <link rel="stylesheet" href="{% static 'base/css/style.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' id="body">
+    
+    {% include 'componentes/navBarModel.html'%}
+
+    <div class="base_container">
+        
+        <div class="base_content">
+            {% block content %}
+            {% endblock %}  
+    
+        </div>
+    
+        <div class="base_footer">
+            {% include 'componentes/footerModel.html'%}
+    
+        </div>
+
+    </div>
+
+</body>
+</html>

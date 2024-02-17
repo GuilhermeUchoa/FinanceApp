@@ -1,0 +1,6 @@
+<form action="{% url 'portfolioApp:addCei' %}" method="post" id="formUploadCei" enctype="multipart/form-data" >
+    <input name="file" type="file" class="file-input file-input-bordered w-full max-w-xs" />
+    <button class="btn btn-neutral" id="buttonformUploadCei"><input type="submit" value="Upload"></button>
+    {% csrf_token %}
+</form>
+<h2><a class="link" href="https://www.investidor.b3.com.br/login">Site CEI para exportar a carteira</a></h2>

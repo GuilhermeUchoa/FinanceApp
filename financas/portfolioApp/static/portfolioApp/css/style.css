@@ -1,0 +1,63 @@
+.parent {
+    display: grid;
+    grid-template-columns: 16vw 1fr 16vw;
+    grid-template-rows: 16vh 12vh 1fr 13vh;
+    height: 90%;
+
+    grid-template-areas: 
+    ". quadroGeralModel ."
+    ". postAtivoModel ."
+    "tabelaModel tabelaModel tabelaModel"
+    ". fileUploadModel ."
+    ;
+}
+
+
+.quadroGeralModel {
+    grid-area: quadroGeralModel;
+    margin: auto;
+
+}
+
+.postAtivoModel {
+    grid-area: postAtivoModel;
+    margin: auto;
+    text-align: center;
+}
+
+.tabelaModel {
+    grid-area: tabelaModel;
+    margin: auto;
+    text-align: center;
+    width: 80vw;
+
+}
+
+.fileUploadModel {
+    grid-area: fileUploadModel;
+    margin: auto;
+    text-align: center;
+}
+
+.input.input-bordered.input-sm.w-full.max-w-xs {
+
+    width: 10vw;
+    height: 5vh;
+    text-align: center;
+    
+}
+
+tr:hover {
+    background-color: aliceblue;
+}
+
+th {
+    text-align: center;
+}
+
+td {
+    text-align: center;
+
+}
+
+

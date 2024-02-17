@@ -1,0 +1,2 @@
+colocar iduser no app receita e despesas 
+criar as contas padroes 

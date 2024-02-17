@@ -1,0 +1,153 @@
+<div class="overflow-x-auto">
+  <br>
+  <p>
+    <input 
+    type="text" 
+    id="myInput" 
+    class="input input-bordered input-xs w-full max-w-xs"
+    onkeyup="myFunction()" 
+    placeholder="Filtro" 
+    title="Filtro">
+  </p>
+  <br>
+  <table class="table" id="myTable">
+    <!-- head -->
+    <thead>
+      <tr class="header">
+        <th></th>
+        <th>ativo</th>
+        <th>cotacao</th>
+        <th>quantidade</th>
+        <th>valor</th>
+        <th>porcentagem</th>
+        <th>meta</th>
+        <th>aporte</th>
+        <th>cota</th>
+        <th>tipo</th>
+        <th>status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- row -->
+      {% for item in portfolio %}
+      <tr id="row{{item.id}}">
+        <th class="id_ativo">{{forloop.counter}}</th>
+      
+        <!-- Butao junto com comentario -->
+        <td>
+          <button class="btn btn-sm btn-outline btn-primary" onclick="my_modal_{{item.id}}.showModal()">{{item.ativo}}</button>
+          <dialog id="my_modal_{{item.id}}" class="modal">
+            <div class="modal-box">
+              
+              <h3 class="font-bold text-lg">Comentários sobre {{item.ativo}}:</h3>
+
+              <textarea name="textoComentario" id="" cols="70" rows="14" placeholder="Porque voce esta investindo nesta empresa?"
+              hx-post="{% url 'portfolioApp:atualizarComentario' id=item.id %}"
+              hx-trigger="change"
+              hx-swap="none"
+              > {{item.comentarios}}</textarea>
+
+              <div class="modal-action">
+                <form method="dialog">
+                  <!-- if there is a button in form, it will close the modal -->
+                  <button class="btn">Salvar/Close</button>
+                </form>
+              </div>
+
+            </div>
+            <form method="dialog" class="modal-backdrop">
+              <button>close</button>
+            </form>
+          </dialog>
+        </td>
+
+        <td id="cotacao">{{item.cotacao|floatformat:2}}</td>
+        <td id="quantidade">{{item.quantidade}}</td>
+        <td id="valor">{{item.valor|floatformat:2}}</td>
+        <td id="porcentagem">{{item.porcentagem|floatformat:2}}</td>
+        
+        <!-- meta -->
+        <td class="meta">
+          <input 
+          class="input input-bordered input-xs w-full max-w-xs" 
+          style="text-align: center;" 
+          type="number" 
+          name="meta" 
+          id="meta" 
+          value="{{item.meta|floatformat:2}}" 
+          hx-post="{% url 'portfolioApp:atualizarMeta' id=item.id %}"
+          hx-swap="none"
+          hx-trigger="change"
+          onchange="metaTotalCalc()"
+          >
+        </td>
+
+        <!-- aporte -->
+        <td id="aporte">0</td>
+        
+        <!-- cota -->
+        <td>
+          <input 
+          class="input input-bordered input-xs w-full max-w-xs"
+          style="text-align: center;" 
+          type="number" 
+          id="cota"
+          onchange="cotaAporteValorTotalPorcentagem()"
+          >
+        </td>
+
+        <!-- Tipo -->
+        <td>{{item.tipo|upper}}</td>
+
+        <!-- Status -->
+        <td>
+          <select name="status" id="status" hx-get="{% url 'portfolioApp:atualizarStatus' id=item.id %}" hx-trigger="change" hx-swap="none">
+            <option id="statusAtual">{{item.status}}</option>
+            <option value="comprar">comprar</option>
+            <option value="vender">vender</option>
+            <option value="aguardar">aguardar</option>
+          </select>
+        </td>
+      
+        <!-- Excluir -->
+        <td
+        hx-get="{% url 'portfolioApp:delAtivo' id=item.id %} "
+        hx-confirm="Voce deseja excluir este item {{item.ativo}}?"
+        hx-target="#row{{item.id}}"
+        hx-swap="delete"
+        >
+          <img width="15" src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/red-trash-can-icon.png">
+        </td>
+
+      </tr>
+      {% endfor %}
+
+    </tbody>
+
+    <!-- tfoot -->
+    <tfoot>
+      <tr>
+        <td></td>
+        <td><b>Total</b></td>
+        <td>
+          {% if portfolio|length > 0 %}
+            <form action="{% url 'portfolioApp:atualizarCotacao' %}" method="get">
+              <button class="btn btn-primary btn-sm">Atualizar Cotações</button>
+            </form>
+          {% endif %}
+        </td>
+        <td></td>
+        <td id="valorTotal">{{valorTotal}}</td>
+        <td id="porcentagemTotal"></td>
+        <td id="metaTotal">0</td>
+        <td id="aporteTotal">0</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tfoot>
+
+  </table>
+</div>

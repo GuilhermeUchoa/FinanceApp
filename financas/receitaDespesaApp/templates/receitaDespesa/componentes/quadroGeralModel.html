@@ -1,0 +1,35 @@
+<div class="stats shadow">
+    {% load humanize %}
+    
+    <div class="stat">
+      <div class="stat-title text-error">Total</div>
+      <div class="stat-value text-error ">R$ {{total|floatformat:2|intcomma}}</div>
+      <div class="stat-desc"></div>
+    </div>
+  
+    <div class="stat">
+      <div class="stat-title text-error">Ações</div>
+      <div class="stat-value" >R$ {{acaoValor|floatformat:2|intcomma}}</div>
+      <div class="stat-desc text-error">{{acaoPorcentagem|floatformat:2}}%</div>
+    </div>
+    
+    <div class="stat">
+      <div class="stat-title text-error">BDRS</div>
+      <div class="stat-value">R$ {{bdrValor|floatformat:2|intcomma}}</div>
+      <div class="stat-desc text-error">{{bdrPorcentagem|floatformat:2}}%</div>
+    </div>
+    
+    <div class="stat">
+      <div class="stat-title text-error">FIIS</div>
+      <div class="stat-value">R$ {{fiiValor|floatformat:2|intcomma}}</div>
+      <div class="stat-desc text-error">{{fiiPorcentagem|floatformat:2}}%</div>
+    </div>
+    
+    <div class="stat">
+      <div class="stat-title text-error">Renda Fixa</div>
+      <div class="stat-value">R$ {{rendaFixaValor|floatformat:2|intcomma  }}</div>
+      <div class="stat-desc text-error  ">{{rendaFixaPorcentagem|floatformat:2}}%</div>
+    </div>
+    
+</div>
+  

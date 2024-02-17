@@ -1,0 +1,100 @@
+{% load humanize %}
+
+<div class="overflow-x-auto">
+    <table class="table">
+        <thead>
+        <tr>
+            <tr>
+                <th>id</th> 
+                <th>Conta</th> 
+                <th>valor</th> 
+                <th>Classificação</th> 
+                <th>Status</th> 
+                <th>data</th>
+            </tr>
+        </tr>
+        </thead> 
+        <tbody id="tbody">
+
+        {% for item in ReceitaDespesas %}
+
+        <tr id="row{{item.id}}">
+
+            <td style="text-align: center;">{{forloop.counter}}</td> 
+
+            <td><input type="text" name="conta" id="" class="input input-bordered input-xs w-full max-w-xs"
+                hx-post="{% url 'receitaDespesaApp:refreshInfomation' id=item.id %}"
+                hx-swap="none"
+                hx-trigger="change"
+                value="{{item.conta}}"
+            >
+            </td> 
+
+
+            <td><input type="text" name="valor" id="" class="input input-bordered input-xs w-full max-w-xs"
+                hx-post="{% url 'receitaDespesaApp:refreshInfomation' id=item.id %}"
+                hx-swap="none"
+                hx-trigger="change"
+                value="{{item.valor|intcomma}}"
+                >
+            </td>
+            
+            <td>
+                <select name="classificacao" id="" class="input input-bordered input-xs w-full max-w-xs"
+                hx-post="{% url 'receitaDespesaApp:refreshInfomation' id=item.id %}"
+                hx-swap="none"
+                hx-trigger="change"
+
+                >   
+                    <option value="">{{item.classificacao}}</option>
+                    <option value="RECEITA">RECEITA</option>
+                    <option  value="DESPESA">DESPESA</option>
+                </select>
+            </td> 
+        
+            <td>
+                <select name="status" id="" class="input input-bordered input-xs w-full max-w-xs"
+                hx-post="{% url 'receitaDespesaApp:refreshInfomation' id=item.id %}"
+                hx-swap="none"
+                hx-trigger="change"
+                {% if item.status == 'INADIPLENTE'%}
+                    style="color: red;"
+                {% endif %}
+                >
+                    <option value="">{{item.status}}</option>   
+                    <option value="INADIPLENTE">INADIPLENTE</option>
+                    <option value="PAGO">PAGO</option>
+                </select>
+            </td> 
+
+            <td>{{item.data}}</td>
+
+            <!-- Excluir -->
+            <td
+            hx-post="{% url 'receitaDespesaApp:excluir' id=item.id %} "
+            hx-target="#row{{item.id}}"
+            hx-swap="delete"
+            >
+                <img width="15" src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/red-trash-can-icon.png">
+            </td>
+
+        
+        </tr>
+
+        {% endfor %}
+        
+        </tbody> 
+
+        <tfoot>
+        <tr>
+            <th></th> 
+            <th>Saldo</th> 
+            <th>R$ {{saldo|floatformat:2|intcomma}}</th> 
+            <th></th> 
+            <th></th> 
+        </tr>
+        </tfoot> 
+
+    </table>
+
+</div>

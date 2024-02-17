@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load humanize %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'receitaDespesaApp/css/style.css' %}">
+
+<div class="parent">
+    
+    <div class="addInfomation">
+        <form action="{% url 'receitaDespesaApp:addInfomation' %}" method="post">
+            {% for item in AddContasForms %}
+                {{item}}
+            {% endfor %}
+            {% csrf_token %}
+            <input type="submit" value="Adicionar" class="btn"> 
+        </form> 
+    
+    </div>
+    
+    <div class="receitaDespesa_filtro">
+        <input type="month" name="data" id="" hx-post="{% url 'receitaDespesaApp:receitaDespesa_post' %}" hx-target=".overflow-x-auto">
+        
+    </div>
+    
+    <div class="ReceitaDespesas_table">
+        {% include 'receitaDespesa/componentes/tableModel.html' with ReceitaDespesas=ReceitaDespesas %}
+
+    </div>
+
+    <div class="bills_patterns">
+        {% include 'receitaDespesa/componentes/quadroBillsModel.html' %}
+
+    </div>
+    
+</div>
+
+
+
+
+{% endblock %}  

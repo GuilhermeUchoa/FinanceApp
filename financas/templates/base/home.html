@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div id="texto_homepage">
+        <div class="bg-base-400 text-8xl font-black grid place-content-center">Bem Vindo</div>
+        <div class="bg-base-400 text-5xl font-black grid place-content-center">Ao seu sistema de controle financeiro</div>
+        {% if user.is_authenticated%}
+        <br>
+        <p class="bg-base-400 text-1xl font-black grid place-content-center">Usuario: {{request.user|upper}} {{request.user.last_name|upper}}</p>
+
+        {% else %}
+        <br>
+        <p class="bg-base-400 text-1xl font-black grid place-content-center"><a class="link link-primary" href="{% url 'account_login' %}">Realize seu Login</a></p>
+
+
+        {% endif %}
+    </div>
+    
+
+{% endblock %}

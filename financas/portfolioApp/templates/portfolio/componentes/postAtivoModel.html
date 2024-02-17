@@ -1,0 +1,13 @@
+
+<div id="postAtivo">
+
+    <form action="{% url 'portfolioApp:addAtivo' %}" method="post">
+        {% for item in adicionarAtivoForms %}
+            {{item}}
+        {% endfor %}
+        {% csrf_token %}
+        <input type="submit" value="Adicionar" class="btn">
+    </form>
+</div>
+
+

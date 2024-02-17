@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'portfolioApp/css/style.css' %}">
+
+
+<div class="parent">
+    
+    <div class="quadroGeralModel">
+        {% include 'portfolio/componentes/quadroGeralModel.html'%}
+
+    </div>
+    
+    <div class="postAtivoModel">
+        {% include 'portfolio/componentes/postAtivoModel.html' %}
+
+    </div>
+    
+    <div class="tabelaModel">
+        {% include 'portfolio/componentes/tabelaModel.html' with portfolio=carteira %}
+
+    </div>
+    
+    <div class="fileUploadModel">
+        {% include 'portfolio/componentes/fileUploadModel.html'%}
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+<script src="{% static 'portfolioApp/js/index.js'%}"></script>
+
+{% endblock %}  
+
