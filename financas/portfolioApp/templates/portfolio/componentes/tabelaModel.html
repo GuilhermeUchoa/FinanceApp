@@ -93,7 +93,7 @@
           style="text-align: center;" 
           type="number" 
           id="cota"
-          onchange="cotaAporteValorTotalPorcentagem()"
+          onchange="cotaAporteValorTotalPorcentagem(); porcentagemColor()"
           >
         </td>
 
@@ -102,7 +102,7 @@
 
         <!-- Status -->
         <td>
-          <select name="status" id="status" hx-get="{% url 'portfolioApp:atualizarStatus' id=item.id %}" hx-trigger="change" hx-swap="none">
+          <select onchange="statusColor()" name="status" id="status" hx-get="{% url 'portfolioApp:atualizarStatus' id=item.id %}" hx-trigger="change" hx-swap="none">
             <option id="statusAtual">{{item.status}}</option>
             <option value="comprar">comprar</option>
             <option value="vender">vender</option>

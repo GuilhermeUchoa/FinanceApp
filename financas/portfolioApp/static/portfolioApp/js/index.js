@@ -66,11 +66,39 @@ function porcentagemQuadroGeral(){
 
 }
 
+function statusColor(){
+  document.querySelectorAll("tbody tr td #statusAtual").forEach((item)=>{
+    if (item.innerHTML == "aguardar"){
+      item.parentNode.parentNode.parentNode.style.backgroundColor = "lightyellow"
+    }else if(item.innerHTML == "vender"){
+      item.parentNode.parentNode.parentNode.style.backgroundColor = "lightpink"
+    }
+  })
+
+}
+
+function porcentagemColor(){
+  document.querySelectorAll("tbody tr").forEach((item)=>{
+    let porcentagem = item.querySelector("#porcentagem")
+    let meta = parseFloat(item.querySelector("#meta").value)
+
+    if(parseFloat(porcentagem.innerHTML) < meta){
+      porcentagem.style.color = "red"
+    }else{
+      porcentagem.style.color = "black"
+    }
+
+  })
+
+}
+
 function onInit(){
 
   porcentagemCalc()
   metaTotalCalc()
   porcentagemQuadroGeral()
+  statusColor()
+  porcentagemColor()
 }
 
 window.onload = onInit()
