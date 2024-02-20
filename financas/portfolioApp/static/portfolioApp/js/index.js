@@ -13,6 +13,7 @@ function porcentagemCalc(){
 
 //cota aporte valor valortotal porcentagem
 function cotaAporteValorTotalPorcentagem(){
+
     let tr = event.currentTarget.parentNode.parentNode
     let cota = parseFloat(tr.querySelector("td input#cota").value)
     let cotacao = parseFloat(tr.querySelector("#cotacao").innerHTML)
@@ -92,6 +93,46 @@ function porcentagemColor(){
 
 }
 
+function addMoreOneCota(){
+  document.querySelectorAll("tbody tr").forEach((item)=>{
+    let porcentagem = item.querySelector("#porcentagem")
+    let meta = parseFloat(item.querySelector("#meta").value)
+    
+    if(parseFloat(porcentagem.innerHTML) < meta){
+      
+      item.querySelector("#cota").value ++
+      let tr = item
+   
+      let cota = parseFloat(tr.querySelector("td input#cota").value)
+      let cotacao = parseFloat(tr.querySelector("#cotacao").innerHTML)
+      let quantidade = parseFloat(tr.querySelector("#quantidade").innerHTML)
+  
+      //aporte
+      tr.querySelector("#aporte").innerHTML = (cota * cotacao).toFixed(2)
+      
+      //valor
+      tr.querySelector("#valor").innerHTML = ((cota+quantidade) * cotacao).toFixed(2)
+  
+  
+      //valorTotal
+      const cells_valor = document.querySelectorAll("tbody tr td#valor")
+      const valores = Array.from(cells_valor).map(cell => parseFloat(cell.textContent));
+      const valorT = valores.reduce((total, valor) => total += valor, 0);
+      document.querySelector("#valorTotal").innerHTML = parseFloat(valorT).toFixed(2)
+  
+  
+  
+      //aporte
+      document.querySelector("#aporteTotal").innerHTML = (valorT - valorTotal).toFixed(2)
+  
+      //porcentagem
+      porcentagemCalc()
+      porcentagemColor()
+    }
+
+  })
+}
+
 function onInit(){
 
   porcentagemCalc()
@@ -102,8 +143,6 @@ function onInit(){
 }
 
 window.onload = onInit()
-
-
 
 // Filtro
 const myFunction = () => {

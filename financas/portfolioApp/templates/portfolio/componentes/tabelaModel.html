@@ -138,11 +138,15 @@
           {% endif %}
         </td>
         <td></td>
-        <td id="valorTotal">{{valorTotal}}</td>
+        <td id="valorTotal">{{valorTotal|floatformat:2}}</td>
         <td id="porcentagemTotal"></td>
         <td id="metaTotal">0</td>
         <td id="aporteTotal">0</td>
-        <td></td>
+        <td>
+          {% if portfolio|length > 0 %}
+              <button class="btn btn-primary btn-sm" onclick="addMoreOneCota()">+1</button>
+          {% endif %}
+        </td>
         <td></td>
         <td></td>
         <td></td>
