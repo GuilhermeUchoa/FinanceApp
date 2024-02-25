@@ -12,3 +12,5 @@ financas/portfolioApp/__pycache__/forms.cpython-311.pyc
 financas/portfolioApp/__pycache__/models.cpython-311.pyc
 financas/portfolioApp/__pycache__/urls.cpython-311.pyc
 financas/portfolioApp/__pycache__/views.cpython-311.pyc
+financas/db.sqlite3
+.gitignore
