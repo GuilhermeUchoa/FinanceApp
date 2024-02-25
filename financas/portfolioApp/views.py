@@ -8,6 +8,7 @@ from . models import Carteira
 import yfinance as yf
 import pandas as pd
 import warnings
+from datetime import date, timedelta
 warnings.simplefilter("ignore")
 
 @login_required
@@ -66,9 +67,17 @@ def addCei(request):
 @login_required
 def atualizarCotacao(request):
     """Atualiza as cotacoes"""
+    
+    #Maneira de se caso a data atual for sabado ou domingo retorna a cotacao de sexta
+    if date.today().weekday() in [5,6]:
+        sexta = date.today().weekday() - 4
+        data_atual = date.today() - timedelta(days=sexta)
+    else:
+        data_atual = date.today()
+    
+    
     df = pd.DataFrame(round(yf.download([i.ativo+'.SA' for i in Carteira.objects.filter(user_id = request.user.id).exclude(tipo='RENDA FIXA')],
-                                        start='2024-01-02',
-                                        end='2024-02-16',
+                                        start= data_atual,
                                         threads=True)['Close'],2))
     df.fillna(0,inplace=True)
 

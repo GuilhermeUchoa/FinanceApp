@@ -61,3 +61,7 @@ td {
 }
 
 
+textarea {
+    padding: 3px;
+    resize: vertical;
+}
