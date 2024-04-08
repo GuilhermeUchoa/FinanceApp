@@ -76,7 +76,7 @@ def atualizarCotacao(request):
         data_atual = date.today()
     
     
-    df = pd.DataFrame(round(yf.download([i.ativo+'.SA' for i in Carteira.objects.filter(user_id = request.user.id).exclude(tipo='RENDA FIXA')],
+    df = pd.DataFrame(round(yf.download([i.ativo+'.SA' for i in Carteira.objects.filter(user_id = request.user.id).exclude(tipo='renda fixa')],
                                         start= data_atual,
                                         threads=True)['Close'],2))
     df.fillna(0,inplace=True)
