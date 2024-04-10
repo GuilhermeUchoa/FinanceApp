@@ -1,2 +1,5 @@
-colocar iduser no app receita e despesas 
-criar as contas padroes 
+Melhorar o site todo com bootstrap
+
+torna-lo mais rapido, pois esta muito lento
+
+adicionar uma forma de avisar quando a data de alguma conta vai vencer

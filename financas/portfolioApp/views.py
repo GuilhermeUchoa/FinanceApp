@@ -24,7 +24,8 @@ def portfolio(request):
         'acaoValor' : Carteira.objects.filter(user_id = request.user.id, tipo = 'acao').aggregate(Sum('valor'))['valor__sum'],
         'bdrValor' : Carteira.objects.filter(user_id = request.user.id, tipo = 'bdr').aggregate(Sum('valor'))['valor__sum'],
         'fiiValor' : Carteira.objects.filter(user_id = request.user.id, tipo = 'fii').aggregate(Sum('valor'))['valor__sum'],
-        'tipos':['acao','bdr','fii'],
+        'rendaFixaValor' : Carteira.objects.filter(user_id = request.user.id, tipo = 'renda fixa').aggregate(Sum('valor'))['valor__sum'],
+        'tipos':['acao','bdr','fii','rendaFixa'],
         
     }   
 

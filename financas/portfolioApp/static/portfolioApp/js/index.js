@@ -64,6 +64,8 @@ function porcentagemQuadroGeral(){
   fiiValor = parseFloat(document.querySelector("#fiiValor").innerHTML.replace("R$","").replace(",",""))
   document.querySelector("#fiiPorcentagem").innerHTML = (parseFloat(fiiValor/valorTotal)*100).toFixed(2)
 
+  rendaFixaValor = parseFloat(document.querySelector("#rendaFixaValor").innerHTML.replace("R$","").replace(",",""))
+  document.querySelector("#rendaPorcentagem").innerHTML = (parseFloat(rendaFixaValor/valorTotal)*100).toFixed(2)
 }
 
 function statusColor(){
